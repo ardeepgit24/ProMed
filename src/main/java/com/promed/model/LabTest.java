@@ -1,13 +1,22 @@
 package com.promed.model;
 
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "lab_tests", schema = "public")
 public class LabTest {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String description;
     private BigDecimal rate;
     private boolean homeCollectionAvailable;
+
+    public LabTest() {}
 
     public LabTest(Long id, String name, String description, BigDecimal rate, boolean homeCollectionAvailable) {
         this.id = id;
@@ -41,4 +50,3 @@ public class LabTest {
         return homeCollectionAvailable;
     }
 }
-

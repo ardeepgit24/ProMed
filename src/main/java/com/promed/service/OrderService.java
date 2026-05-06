@@ -57,7 +57,7 @@ public class OrderService {
         );
         orders.add(order);
 
-        String summary = "Order ID: " + order.id() + "\nCustomer: " + request.customerName() +
+        String summary = "Order ID: " + order.getId() + "\nCustomer: " + request.customerName() +
                 "\nItems:\n" + String.join("\n", lines) +
                 "\nTotal: " + total + "\nDelivery Address: " + request.address();
         emailService.sendOrderPlacedMail(summary);
@@ -71,20 +71,20 @@ public class OrderService {
 
     public long countOrdersToday() {
         LocalDate today = LocalDate.now();
-        return orders.stream().filter(o -> o.createdAt().toLocalDate().isEqual(today)).count();
+        return orders.stream().filter(o -> o.getCreatedAt().toLocalDate().isEqual(today)).count();
     }
 
     public BigDecimal dailySale() {
         LocalDate today = LocalDate.now();
         return orders.stream()
-                .filter(o -> o.createdAt().toLocalDate().isEqual(today))
-                .map(Order::totalAmount)
+                .filter(o -> o.getCreatedAt().toLocalDate().isEqual(today))
+                .map(Order::getTotalAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public List<Order> ordersToday() {
         LocalDate today = LocalDate.now();
-        return orders.stream().filter(o -> o.createdAt().toLocalDate().isEqual(today)).toList();
+        return orders.stream().filter(o -> o.getCreatedAt().toLocalDate().isEqual(today)).toList();
     }
 }
 

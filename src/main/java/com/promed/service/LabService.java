@@ -43,7 +43,7 @@ public class LabService {
 
     public long countLabBookingsToday() {
         LocalDate today = LocalDate.now();
-        return labBookings.stream().filter(b -> b.slot().toLocalDate().isEqual(today)).count();
+        return labBookings.stream().filter(b -> b.getSlot().toLocalDate().isEqual(today)).count();
     }
 
     public List<LabBooking> allLabBookings() {
