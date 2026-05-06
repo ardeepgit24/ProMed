@@ -1,28 +1,14 @@
 package com.promed.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "doctors", schema = "public")
 public class Doctor {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String specialization;
-
-    @ElementCollection
-    @CollectionTable(name = "doctor_available_slots", schema = "public",
-            joinColumns = @JoinColumn(name = "doctor_id"))
-    @Column(name = "slot")
-    private List<LocalDateTime> availableSlots = new ArrayList<>();
-
-    public Doctor() {}
+    private List<LocalDateTime> availableSlots;
 
     public Doctor(Long id, String name, String specialization, List<LocalDateTime> availableSlots) {
         this.id = id;
@@ -51,3 +37,4 @@ public class Doctor {
         this.availableSlots = new ArrayList<>(availableSlots);
     }
 }
+

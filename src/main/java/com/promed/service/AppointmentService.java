@@ -45,7 +45,7 @@ public class AppointmentService {
 
     public long countAppointmentsToday() {
         LocalDate today = LocalDate.now();
-        return appointments.stream().filter(a -> a.getSlot().toLocalDate().isEqual(today)).count();
+        return appointments.stream().filter(a -> a.slot().toLocalDate().isEqual(today)).count();
     }
 
     public List<Appointment> allAppointments() {

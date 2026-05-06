@@ -1,24 +1,15 @@
 package com.promed.model;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "medicines", schema = "public")
 public class Medicine {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String category;
     private BigDecimal price;
     private int stock;
     private int reorderLevel;
     private boolean prescriptionRequired;
-
-    public Medicine() {}
 
     public Medicine(Long id, String name, String category, BigDecimal price, int stock, int reorderLevel,
                     boolean prescriptionRequired) {
@@ -63,3 +54,4 @@ public class Medicine {
         return prescriptionRequired;
     }
 }
+
